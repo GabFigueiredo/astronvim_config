@@ -1,5 +1,3 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
-
 -- You can also add or configure plugins by creating files in this `plugins/` folder
 -- Here are some examples:
 
@@ -15,6 +13,24 @@ return {
     config = function() require("lsp_signature").setup() end,
   },
 
+  {
+    "projekt0n/github-nvim-theme",
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
+    config = function()
+      require("github-theme").setup {
+        -- ...
+      }
+
+      vim.cmd "colorscheme github_dark"
+    end,
+
+    {
+      "nvim-telescope/telescope.nvim",
+      tag = "0.1.6",
+      dependencies = { "nvim-lua/plenary.nvim" },
+    },
+  },
   -- == Examples of Overriding Plugins ==
 
   -- customize alpha options
